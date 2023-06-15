@@ -1,0 +1,210 @@
+@use '../../lib/service.scss' as s;
+
+.header {
+    @extend .section;
+    background-color: s.color(backgroundDark);
+}
+
+.header__content {
+    @extend .section__content;
+    display: flex;
+    padding: s.space(4) 0;
+    justify-content: space-between;   
+}
+
+.header__block {
+    display: flex;
+    gap: s.space(8);
+    align-items: center;
+}
+
+.header__icon {
+    @include s.click; 
+}
+
+.header__link {   
+    color: s.color(whitelight);
+    @include s.click; 
+    font-size: s.size('small');
+}
+
+.header__bottom {
+    background-color: #fff;
+}
+
+.header__bottom_content{
+    @media all and (width < s.screen('tablet')) {
+        display: grid;
+        grid-template-rows: repeat(2, 1fr);
+        }  
+}
+
+.header__bottom_title {
+    font-size: 14px;
+    color: #1D1D1F;   
+}
+
+.header__bottom_link {
+    font-size: 14px;
+    color: #0066CC;
+    @include s.click;
+}
+
+.product__content {
+    display: grid;
+    gap: s.space(5);
+    text-align: center;
+    align-content: center;
+}
+
+.product__title {
+    font-size: 56px;
+    font-weight: 600;
+    color: s.color('fontDark');
+}
+
+.product__description {
+    font-size: 28px;
+}
+
+.product__action {
+    display: flex;
+    align-items: center;
+    gap: s.space(2);
+    justify-content: center;
+
+    @include s.click;
+}
+
+.product__link {
+    @include s.linkAction;
+}
+
+.product {  
+    @extend .section;
+
+    
+    background-repeat: no-repeat;
+    background-position: bottom center;
+
+}
+
+.product-big {
+    max-height: 700px;
+    height: 100vh;
+    background-size: cover;
+    padding-top: s.space(20);
+    padding-bottom: s.space(20);
+    @media all and (width < s.screen('tablet')) {
+    // background-size: 150%;
+    max-height: 500px;
+    padding-top: s.space(10);
+    }
+}
+
+.product-small {
+    max-height: 580px;
+    height: 100vh;
+    background-size: cover;
+    padding-top: s.space(12);
+    padding-bottom: s.space(12);
+    @media all and (width < s.screen('tablet')) {
+    // background-size: 150%;
+    max-height: 500px;
+    padding-top: s.space(5);
+    }
+}
+
+.product--dark {
+    .product__title, .product__description {
+    color: s.color('background');
+    background-color: black;
+}
+}
+
+.product--top {
+    .product__content {
+        align-content: flex-start;  
+    }
+}
+
+.product--bottom {
+    .product__content {
+        align-content: flex-end;  
+    }
+}
+
+.product--light {
+    .product__title, .product__description {
+    color: s.color('fontDark');
+}
+    background-color: #FAFAFA;
+}
+
+$productImage: (    
+    'iphone-pro' '/img/iphone_pro.png' #000,
+    'iphone' '/img/iphone.png' #FAFAFA,
+    'iwatch' '/img/iwatch.png' #000000,
+    'trade-in' '/img/trade-in.png' #FBFBFD,
+    'conference' '/img/conference.png' #000000,
+    'ipad' '/img/ipad.png' #FBFBFB,
+    'small_business' '/img/small_business.png' #010000,
+    'gift' '/img/gift.png' #FBFBFB,
+    'card' '/img/card.png' #FBFBFB,    
+);
+
+@each $class, $url, $color in $productImage {
+    .product--#{$class} {
+        background-image: url(#{$url}); 
+        background-color: $color;       
+    }    
+}
+
+.product-small {
+    .product__title {
+       font-size: 40px;
+    }
+
+    .product__description {
+        font-size: 20px;
+     }
+}
+
+.footer {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    max-width: 1200px;
+    justify-items: space-between;
+    margin: s.space(10) 0 s.space(10) 0;
+    @extend .section;
+
+    @media all and (width < s.screen('tablet')) {
+        grid-template-columns: repeat(3, 1fr);       
+        }  
+}
+
+.footer__store {
+    @extend .section__content;
+}
+
+.footer__title {
+    color: s.color('fontDark');
+    font-weight: 600;
+    font-size: s.size('small');
+    line-height: 100%;
+    margin-bottom: s.space(4);
+}
+
+.footer__links {
+    display: grid;
+    text-align: start; 
+    gap: s.space(3);
+}
+
+.footer__link {
+    color: s.color('backgroundDark');
+    font-weight: 400;
+    font-size: s.size('small');
+    line-height: 100%;
+    @include s.click;
+}
